@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Jade M. Igot • Biography</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --accent: #ff4da6;
+            --accent2: #00e5ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.75;
+        }
+        
+        nav {
+            background: rgba(15, 23, 42, 0.97);
+            backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 77, 166, 0.4);
+        }
+        
+        .nav-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff4da6, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width 0.4s ease;
+        }
+        
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: white;
+        }
+        
+        /* Smaller Banner - Moved lower */
+        .banner {
+            height: 320px;
+            background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.85)), 
+                        url('https://picsum.photos/id/1015/2000/1200') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        .banner-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            color: white;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
+        }
+        
+        /* Main Content - Now higher up */
+        .main-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 40px 120px;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.7s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            padding: 48px;
+            border-radius: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-pic {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 40px;
+            box-shadow: 0 20px 40px rgba(255,77,166,0.4);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(90deg, #ff4da6, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 28px;
+        }
+        
+        .hobby-card {
+            background: rgba(255,255,255,0.12);
+            padding: 36px 28px;
+            border-radius: 20px;
+            transition: all 0.4s;
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .motto {
+            font-style: italic;
+            font-size: 1.75rem;
+            text-align: center;
+            padding: 45px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 24px;
+            border: 3px solid #00e5ff;
+            margin: 50px auto;
+            max-width: 700px;
+        }
+        
+        footer {
+            background: #0a1324;
+            padding: 70px 40px 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">JOHN JADE</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="switchPage(0)" class="active" id="nav-0">HOME</a></li>
+                <li><a href="#" onclick="switchPage(1)" id="nav-1">ABOUT</a></li>
+                <li><a href="#" onclick="switchPage(2)" id="nav-2">HOBBIES</a></li>
+                <li><a href="#" onclick="switchPage(3)" id="nav-3">GOALS</a></li>
+                <li><a href="#" onclick="switchPage(4)" id="nav-4">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content First (Higher on page) -->
+    <div class="main-content">
+        <!-- HOME -->
+        <div class="page active" id="page-0">
+            <div style="text-align: center;">
+                <div class="profile-pic">
+                    <img src="https://picsum.photos/id/1015/600/600" alt="John Jade">
+                </div>
+                <h2 style="font-size: 2.8rem; margin-bottom: 20px;">Hello, I'm John Jade ✨</h2>
+                <p style="font-size: 1.4rem; max-width: 680px; margin: 0 auto;">
+                    A 19-year-old who loves movies, books, and games. 
+                    Working hard every day to achieve my dreams and make my parents proud.
+                </p>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="page" id="page-1">
+            <h2 class="section-title">My Story</h2>
+            <div class="content-box">
+                <p style="font-size: 1.3rem;">
+                    At 19, I'm on a journey filled with curiosity and ambition. 
+                    Movies, books, and games help me explore new ideas and perspectives.
+                </p>
+            </div>
+        </div>
+
+        <!-- HOBBIES -->
+        <div class="page" id="page-2">
+            <h2 class="section-title">My Hobbies</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div style="font-size: 3.8rem; margin-bottom: 16px;">🎬</div>
+                    <h3 style="color:#ff4da6;">Watching Movies</h3>
+                    <p>Immersing myself in captivating stories and visuals.</p>
+                </div>
+                <div class="hobby-card">
+                    <div style="font-size: 3.8rem; margin-bottom: 16px;">📖</div>
+                    <h3 style="color:#00e5ff;">Reading</h3>
+                    <p>Discovering new worlds through the power of words.</p>
+                </div>
+                <div class="hobby-card">
+                    <div style="font-size: 3.8rem; margin-bottom: 16px;">🎮</div>
+                    <h3 style="color:#c084fc;">Playing Games</h3>
+                    <p>Challenging myself and having fun with friends.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GOALS -->
+        <div class="page" id="page-3">
+            <h2 class="section-title">My Goals</h2>
+            <div class="content-box" style="text-align: center;">
+                <p style="font-size: 1.45rem;">To become successful and make my parents proud.</p>
+                <div class="motto">
+                    “If you don't succeed, try and try again.”
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="page" id="page-4">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="content-box" style="text-align: center;">
+                <p style="font-size: 1.4rem; line-height: 2.6;">
+                    <strong>Email:</strong> <a href="mailto:johnjadeigot@gmail.com" style="color:#ff4da6;">johnjadeigot@gmail.com</a><br>
+                    <strong>Phone:</strong> <a href="tel:09954290979" style="color:#00e5ff;">0995 429 0979</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner moved lower -->
+    <div class="banner">
+        <div class="banner-content">
+            <h1>John Jade M. Igot</h1>
+            <p style="font-size: 1.5rem;">19 • Dreamer • Story Lover</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>John Jade M. Igot • 2026</p>
+        <p style="margin-top: 12px; opacity: 0.7;">"If you don't succeed, try and try again."</p>
+    </footer>
+
+    <script>
+        function switchPage(pageIndex) {
+    // Remove active class from all pages
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // Show selected page after a tiny delay
+    setTimeout(() => {
+        const targetPage = document.getElementById(page-${pageIndex});
+        if (targetPage) {
+            targetPage.classList.add('active');
+        }
+    }, 50);
+
+    // Update navigation
+    document.querySelectorAll('.nav-links a').forEach((link, index) => {
+        link.classList.toggle('active', index === pageIndex);
+    });
+}
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") {
+                let idx = Array.from(document.querySelectorAll('.nav-links a')).findIndex(l => l.classList.contains('active'));
+                switchPage((idx + 1) % 5);
+            }
+            if (e.key === "ArrowLeft") {
+                let idx = Array.from(document.querySelectorAll('.nav-links a')).findIndex(l => l.classList.contains('active'));
+                switchPage(idx === 0 ? 4 : idx - 1);
+            }
+        });
+    </script>
+</body>
+</html>
